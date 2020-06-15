@@ -1,0 +1,133 @@
+version: '3'
+services:
+  logger:
+    image: logger
+    container_name: logger
+    build:
+      context: ./
+      dockerfile: docker/fluentd/Dockerfile
+    volumes:
+      - ./storage/logs:/fluentd/log
+    ports:
+      - 24224:24224
+  npm:
+    image: npm
+    container_name: npm
+    depends_on:
+      - logger
+    build:
+      context: ./
+      dockerfile: docker/npm/Dockerfile
+    volumes:
+      - ./:/var/www/app
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.npm.{{.FullID}}
+  nginx:
+    image: nginx
+    container_name: nginx
+    depends_on:
+      - logger
+      - phpfpm
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        ENVIRONMENT: "development"
+    volumes:
+      - ./:/var/www/app
+    links:
+      - phpfpm
+    ports:
+      - 8080:80
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.nginx.{{.FullID}}
+  phpfpm:
+    image: phpfpm
+    container_name: phpfpm
+    depends_on:
+      - logger
+      - database
+    build:
+      context: ./
+      dockerfile: docker/phpfpm/Dockerfile
+      args:
+        ENVIRONMENT: "development"
+        PHP_XDEBUG_INSTALL: ${DOCKER_BUILD_ARG_PHP_XDEBUG_INSTALL:-true}
+        PHP_XDEBUG_PHP_IDE_CONFIG: ${DOCKER_BUILD_ARG_PHP_XDEBUG_PHP_IDE_CONFIG:-""}
+        PHP_XDEBUG_REMOTE_ENABLE: ${DOCKER_BUILD_ARG_PHP_XDEBUG_REMOTE_ENABLE:-On}
+        PHP_XDEBUG_REMOTE_AUTO_START: ${DOCKER_BUILD_ARG_PHP_XDEBUG_REMOTE_AUTO_START:-On}
+        PHP_XDEBUG_REMOTE_CONNECT_BACK: ${DOCKER_BUILD_ARG_PHP_XDEBUG_REMOTE_CONNECT_BACK:-Off}
+        PHP_XDEBUG_REMOTE_HOST: ${DOCKER_BUILD_ARG_PHP_XDEBUG_REMOTE_HOST:-docker.for.mac.localhost}
+        PHP_XDEBUG_REMOTE_PORT:  ${DOCKER_BUILD_ARG_PHP_XDEBUG_REMOTE_PORT:-9001}
+        PHP_XDEBUG_IDEKEY: ${DOCKER_BUILD_ARG_PHP_XDEBUG_IDEKEY:-phpstorm}
+        PHP_XDEBUG_PROFILER_ENABLE: ${DOCKER_BUILD_ARG_PHP_XDEBUG_PROFILER_ENABLE:-Off}
+        PHP_XDEBUG_PROFILER_OUTPUT_DIR: ${DOCKER_BUILD_ARG_PHP_XDEBUG_PROFILER_OUTPUT_DIR:-/tmp}
+        CHANGE_UID_GID: ${DOCKER_BUILD_ARG_CHANGE_UID_GID:-false}
+        CHANGE_UID_GID_BEFORE_UID: ${DOCKER_BUILD_ARG_CHANGE_UID_GID_BEFORE_UID:-""}
+        CHANGE_UID_GID_BEFORE_GID: ${DOCKER_BUILD_ARG_CHANGE_UID_GID_BEFORE_GID:-""}
+    volumes:
+      - ./:/var/www/app
+    command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
+    ports:
+      - 8000:8000
+    tty: true
+    stdin_open: true
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.phpfpm.{{.FullID}}
+  php-cli:
+    image: php-cli
+    container_name: php-cli
+    depends_on:
+      - phpfpm
+    build:
+      context: ./
+      dockerfile: docker/php-cli/Dockerfile
+    volumes:
+      - ./:/var/www/app
+  redis:
+    image: redis
+    container_name: redis
+    depends_on:
+      - logger
+    build:
+      context: ./
+      dockerfile: docker/redis/Dockerfile
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.redis.{{.FullID}}
+  database:
+    image: database
+    container_name: database
+    depends_on:
+      - logger
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./docker/mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/my.cnf
+    build:
+      context: ./
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: app
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: user_pass
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.mysql.{{.FullID}}
+volumes:
+  mysql-volume:
