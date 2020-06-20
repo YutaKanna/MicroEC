@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'MicroEC') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,8 +25,8 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
 
-{{--                    {{ config('app.name', $requestedStore->name ?? 'Laravel') }}--}} {{-- TODO: 後で調整する --}}
-                    {{ $requestedStore->name ?? 'Laravel' }}
+{{--                    {{ config('app.name', $requestedStore->name ?? 'MicroEC') }}--}} {{-- TODO: 後で調整する --}}
+                    {{ $requestedStore->name ?? 'MicroEC' }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
