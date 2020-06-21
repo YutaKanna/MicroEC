@@ -40,10 +40,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('cart.index') }}">
                             <i class="fas fa-shopping-cart"></i>
-                            @if($count = Cart::getContent()->count())
-                            <span class="badge badge-pill badge-primary">{{ $count }}</span>
+                            @if(Cart::getContent())
+                            <span class="badge badge-pill badge-primary">{{ Cart::getTotalQuantity() }}</span>
                             @endif
                         </a>
                         <!-- Authentication Links -->
