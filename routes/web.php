@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'Products\ProductsController@index')->name('products.index');
-Route::get('/products/{product}', 'Products\ProductsController@show')->name('products.show');
+Route::get('products', 'Products\ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'Products\ProductsController@show')->name('products.show');
+
+Route::post('cart/add-item', 'Cart\CartController@addItem')->name('cart.add_item');
 
 Auth::routes();
 

@@ -40,6 +40,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-shopping-cart"></i>
+                            @if($count = Cart::getContent()->count())
+                            <span class="badge badge-pill badge-primary">{{ $count }}</span>
+                            @endif
+                        </a>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -51,9 +57,6 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
