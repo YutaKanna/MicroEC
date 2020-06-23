@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button type="submit" class="btn btn-outline-primary" onclick="alert('準備中');">注文する</button></td>
+                        <td><button type="submit" class="btn btn-outline-primary"><a href="{{ route('order.index') }}" class="btn btn-yellow">レジへすすむ</a></button></td>
                         <td></td>
                         <td></td>
                     </tr>

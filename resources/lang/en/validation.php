@@ -144,6 +144,28 @@ return [
     |
     */
 
-    'attributes' => [],
-
+    'attributes' => [
+        'order_ship' => [
+            'order_id' => 'OrderId',
+            'status' => 'Status',
+            'name' => 'ShipName',
+            'postal_code3' => 'PostalCode3',
+            'postal_code4' => 'PostalCode4',
+            'prefecture_id' => 'PrefectureId',
+            'address_city' => 'AddressCity',
+            'address_street' => 'AddressStreet',
+            'phone_number' => 'PhoneNumber',
+        ],
+        'order_bill' => [
+            'order_id' => 'OrderId',
+            'status' => 'Status',
+            'name' => 'BillName',
+            'postal_code3' => 'PostalCode3',
+            'postal_code4' => 'PostalCode4',
+            'prefecture_id' => 'PrefectureId',
+            'address_city' => 'AddressCity',
+            'address_street' => 'AddressStreet',
+            'phone_number' => 'PhoneNumber',
+        ],
+    ],
 ];
