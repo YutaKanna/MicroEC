@@ -148,7 +148,8 @@ return [
         'order_ship' => [
             'order_id' => 'OrderId',
             'status' => 'Status',
-            'name' => 'ShipName',
+            'name' => 'Name',
+            'postal_code' => 'PostalCode',
             'postal_code3' => 'PostalCode3',
             'postal_code4' => 'PostalCode4',
             'prefecture_id' => 'PrefectureId',
@@ -166,6 +167,12 @@ return [
             'address_city' => 'AddressCity',
             'address_street' => 'AddressStreet',
             'phone_number' => 'PhoneNumber',
+        ],
+        'payment' => [
+            'name_on_card' => 'NameOnCard',
+            'card_number' => 'CardNumber',
+            'expiry' => 'Expiry',
+            'cvc' => 'CVC',
         ],
     ],
 ];

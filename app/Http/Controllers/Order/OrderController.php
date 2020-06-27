@@ -11,7 +11,7 @@ class OrderController extends Controller
     {
         // TASK: redirect if cart was empty <- move to middleware and that middleware uses in Router.
         if (!count(Cart::getContent())) {
-            return redirect()->route('store.cart.index', ['subDomain' => $store->slug])->withErrors('カートに商品がありません。');
+            return redirect()->route('cart.index')->withErrors('カートに商品がありません。');
         }
 
         return view('order.index');
