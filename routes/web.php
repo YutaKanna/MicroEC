@@ -26,6 +26,8 @@ Route::post('cart/update-quantity', 'Cart\CartController@updateItemQuantity')->n
 Route::get('order/index', 'Order\OrderController@index')->name('order.index');
 Route::post('order/index', 'Order\OrderController@store')->name('order.store');
 
+Route::get('confirmation/index', 'ConfirmationController@index')->name('confirmation.index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="/javascripts/jquery-3.1.1.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -83,8 +84,8 @@
 
         <main class="py-4">
             @yield('content')
+            @yield('extra-js')
         </main>
     </div>
-    @yield('extra-js')
 </body>
 </html>

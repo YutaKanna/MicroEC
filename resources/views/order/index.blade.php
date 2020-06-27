@@ -42,73 +42,74 @@
                     'method' => 'post',
                     'id'=> 'payment-form',
                 ]) !!}
+                {{ csrf_field() }}
                     <h3>お届け先:</h3>
                     <div class="col-md-12">
                         <div class="form-group row">
-                            {!! Form::label('order_ship[name]', __('validation.attributes.order_ship.name'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('name', __('validation.attributes.order_ship.name'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[name]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.name') ? ' is-invalid' : ''),
+                                {!! Form::text('name', null, [
+                                        'class' => 'form-control'.($errors->has('name') ? ' is-invalid' : ''),
                                         'id' => 'name',
                                         'placeholder' => __('validation.attributes.order_ship.name'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[email]', __('validation.attributes.order_ship.email'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('email', __('validation.attributes.order_ship.email'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[email]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.email') ? ' is-invalid' : ''),
+                                {!! Form::text('email', null, [
+                                        'class' => 'form-control'.($errors->has('email') ? ' is-invalid' : ''),
                                         'id' => 'email',
                                         'placeholder' => __('validation.attributes.order_ship.email'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[postal_code]', __('validation.attributes.order_ship.postal_code'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('postalcode', __('validation.attributes.order_ship.postal_code'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[postal_code]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.postal_code') ? ' is-invalid' : ''),
-                                        'id' => 'postal_code',
+                                {!! Form::text('postalcode', null, [
+                                        'class' => 'form-control'.($errors->has('postalcode') ? ' is-invalid' : ''),
+                                        'id' => 'postalcode',
                                         'placeholder' => __('validation.attributes.order_ship.postal_code'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[address]', __('validation.attributes.order_ship.address'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('address', __('validation.attributes.order_ship.address'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[address]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.address') ? ' is-invalid' : ''),
+                                {!! Form::text('address', null, [
+                                        'class' => 'form-control'.($errors->has('address') ? ' is-invalid' : ''),
                                         'id' => 'address',
                                         'placeholder' => __('validation.attributes.order_ship.address'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[city]', __('validation.attributes.order_ship.city'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('city', __('validation.attributes.order_ship.city'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[city]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.city') ? ' is-invalid' : ''),
+                                {!! Form::text('city', null, [
+                                        'class' => 'form-control'.($errors->has('city') ? ' is-invalid' : ''),
                                         'id' => 'city',
                                         'placeholder' => __('validation.attributes.order_ship.city'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[province]', __('validation.attributes.order_ship.province'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('province', __('validation.attributes.order_ship.province'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[province]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.province') ? ' is-invalid' : ''),
+                                {!! Form::text('province', null, [
+                                        'class' => 'form-control'.($errors->has('province') ? ' is-invalid' : ''),
                                         'id' => 'province',
                                         'placeholder' => __('validation.attributes.order_ship.province'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('order_ship[phone]', __('validation.attributes.order_ship.phone'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('phone', __('validation.attributes.order_ship.phone'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('order_ship[phone]', null, [
-                                        'class' => 'form-control'.($errors->has('order_ship.phone') ? ' is-invalid' : ''),
+                                {!! Form::text('phone', null, [
+                                        'class' => 'form-control'.($errors->has('phone') ? ' is-invalid' : ''),
                                         'id' => 'phone',
                                         'placeholder' => __('validation.attributes.order_ship.phone'),
                                 ]) !!}
