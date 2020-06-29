@@ -24,6 +24,9 @@ Route::post('cart/remove-item', 'Cart\CartController@removeItem')->name('cart.re
 Route::post('cart/update-quantity', 'Cart\CartController@updateItemQuantity')->name('cart.update_quantity');
 
 Route::get('order/index', 'Order\OrderController@index')->name('order.index');
+Route::post('order/index', 'Order\OrderController@store')->name('order.store');
+
+Route::get('confirmation/index', 'ConfirmationController@index')->name('confirmation.index');
 
 Auth::routes();
 
