@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cart;
 
+use App\Events\AddedItemCart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cart\CartAddItemRequest;
 use App\Http\Requests\Cart\CartRemoveItemRequest;
@@ -24,6 +25,8 @@ class CartController extends Controller
         $product = Product::find($productId);
 
         Cart::add($product->id, $product->name, $product->price, $quantity);
+
+        event(new AddedItemCart());
 
         return redirect()->back()->with('success_message', '追加しました');
     }
