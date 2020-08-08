@@ -26,7 +26,7 @@ class CartController extends Controller
 
         Cart::add($product->id, $product->name, $product->price, $quantity);
 
-        event(new AddedItemCart());
+        event(new AddedItemCart($product));
 
         return redirect()->back()->with('success_message', '追加しました');
     }

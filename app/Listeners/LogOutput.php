@@ -26,6 +26,6 @@ class LogOutput
      */
     public function handle(AddedItemCart $event)
     {
-        \Log::debug("Item added");
+        \Log::debug("{$event->product->name} was added.");
     }
 }
